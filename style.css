@@ -1,0 +1,520 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f0f2f5;
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.english {
+    direction: ltr;
+}
+
+body.english.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+body.dark-mode .container {
+    background-color: #1e1e1e;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+header {
+    background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);
+    color: white;
+    padding: 25px 30px;
+    text-align: center;
+    position: relative;
+}
+
+body.dark-mode header {
+    background: linear-gradient(135deg, #3a5aa0 0%, #0f1c3a 100%);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+header p {
+    opacity: 0.9;
+    font-size: 1.1rem;
+}
+
+/* أزرار التحكم */
+.controls {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+body.english .controls {
+    right: auto;
+    left: 20px;
+}
+
+.control-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.3rem;
+    transition: all 0.3s;
+}
+
+.control-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.theme-toggle {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.language-toggle {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.app-content {
+    padding: 30px;
+}
+
+/* إضافة مهمة جديدة */
+.add-task {
+    background-color: #f8f9fa;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s;
+}
+
+body.dark-mode .add-task {
+    background-color: #2d2d2d;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.add-task h2 {
+    color: #182848;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.3s;
+}
+
+body.dark-mode .add-task h2 {
+    color: #a0b3e0;
+}
+
+.add-task h2 i {
+    color: #4b6cb7;
+}
+
+body.dark-mode .add-task h2 i {
+    color: #5a7bc8;
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+}
+
+.input-group input {
+    flex: 1;
+    padding: 15px 20px;
+    border: 2px solid #e1e5eb;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s;
+    background-color: white;
+    color: #333;
+}
+
+body.dark-mode .input-group input {
+    background-color: #3a3a3a;
+    border-color: #555;
+    color: #e0e0e0;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #4b6cb7;
+    box-shadow: 0 0 0 3px rgba(75, 108, 183, 0.1);
+}
+
+body.dark-mode .input-group input:focus {
+    border-color: #5a7bc8;
+    box-shadow: 0 0 0 3px rgba(90, 123, 200, 0.2);
+}
+
+.add-btn {
+    background: linear-gradient(to right, #4b6cb7, #182848);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 0 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+body.dark-mode .add-btn {
+    background: linear-gradient(to right, #5a7bc8, #2a3a6a);
+}
+
+.add-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(75, 108, 183, 0.3);
+}
+
+/* قسم المهام */
+.tasks-section {
+    margin-bottom: 30px;
+}
+
+.section-title {
+    color: #182848;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f2f5;
+    transition: color 0.3s, border-color 0.3s;
+}
+
+body.dark-mode .section-title {
+    color: #a0b3e0;
+    border-bottom-color: #3a3a3a;
+}
+
+.section-title i {
+    color: #4b6cb7;
+}
+
+body.dark-mode .section-title i {
+    color: #5a7bc8;
+}
+
+/* قائمة المهام */
+.task-list {
+    list-style: none;
+}
+
+.task-item {
+    background-color: white;
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    border-right: 5px solid #4b6cb7;
+    transition: all 0.3s;
+}
+
+body.english .task-item {
+    border-right: none;
+    border-left: 5px solid #4b6cb7;
+}
+
+body.dark-mode .task-item {
+    background-color: #2d2d2d;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.task-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .task-item:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.task-item.completed {
+    border-right-color: #28a745;
+    opacity: 0.8;
+}
+
+body.english .task-item.completed {
+    border-left-color: #28a745;
+}
+
+.task-info {
+    flex: 1;
+}
+
+.task-text {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.task-time {
+    font-size: 0.85rem;
+    color: #6c757d;
+    transition: color 0.3s;
+}
+
+body.dark-mode .task-time {
+    color: #a0a0a0;
+}
+
+.task-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1rem;
+}
+
+.extend-btn {
+    background-color: rgba(75, 108, 183, 0.1);
+    color: #4b6cb7;
+}
+
+body.dark-mode .extend-btn {
+    background-color: rgba(90, 123, 200, 0.2);
+    color: #a0b3e0;
+}
+
+.extend-btn:hover {
+    background-color: rgba(75, 108, 183, 0.2);
+}
+
+.delete-btn {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+}
+
+body.dark-mode .delete-btn {
+    background-color: rgba(220, 53, 69, 0.2);
+    color: #e57373;
+}
+
+.delete-btn:hover {
+    background-color: rgba(220, 53, 69, 0.2);
+}
+
+.complete-btn {
+    background-color: rgba(40, 167, 69, 0.1);
+    color: #28a745;
+}
+
+body.dark-mode .complete-btn {
+    background-color: rgba(40, 167, 69, 0.2);
+    color: #66bb6a;
+}
+
+.complete-btn:hover {
+    background-color: rgba(40, 167, 69, 0.2);
+}
+
+/* المهام المكتملة */
+.completed-tasks .task-item {
+    border-right-color: #28a745;
+}
+
+body.english .completed-tasks .task-item {
+    border-left-color: #28a745;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #6c757d;
+    transition: color 0.3s;
+}
+
+body.dark-mode .empty-state {
+    color: #a0a0a0;
+}
+
+.empty-state i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    opacity: 0.5;
+}
+
+.empty-state p {
+    font-size: 1.1rem;
+}
+
+/* التذييل */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #6c757d;
+    font-size: 0.9rem;
+    border-top: 1px solid #f0f2f5;
+    transition: color 0.3s, border-color 0.3s;
+}
+
+body.dark-mode footer {
+    color: #a0a0a0;
+    border-top-color: #3a3a3a;
+}
+
+/* تصميم متجاوب */
+@media (max-width: 768px) {
+    .container {
+        border-radius: 15px;
+    }
+
+    header {
+        padding: 20px;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .controls {
+        position: relative;
+        top: 0;
+        right: 0;
+        justify-content: center;
+        margin-bottom: 15px;
+    }
+
+    body.english .controls {
+        left: 0;
+    }
+
+    .app-content {
+        padding: 20px;
+    }
+
+    .input-group {
+        flex-direction: column;
+    }
+
+    .add-btn {
+        justify-content: center;
+        padding: 15px;
+    }
+
+    .task-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .task-actions {
+        align-self: flex-end;
+    }
+}
+
+/* تأثيرات للعناصر المضافة حديثًا */
+.task-item.new-task {
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* عنصر تحميل اللغة */
+.language-loader {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.language-loader.active {
+    display: flex;
+}
+
+.language-loader i {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* تأثيرات انتقال السمة */
+.theme-transition * {
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s !important;
+}
